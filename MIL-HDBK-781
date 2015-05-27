@@ -1,0 +1,11 @@
+##This function is from MIL-HDBK-781A and generates the likelihood that a system will pass a reliability test
+##M=minimum MTBF
+##r = failure free requirement
+##Wratio = a real number (between 1 and 2) that, when multiplied by "r" indicates the test window.
+  ##The default Wratio is generally accepted to be 2. (W should be up to twice "r". Change it at your own peril!)
+Ps <- function(M,r,Wratio=2){
+  if(Wratio>2||Wratio<1) stop("Wratio must between 1 and 2")
+  
+logPs <- r*log(M-1)+log(M+(Wratio*r)-r)-(r+1)*log(M)
+exp(logPs)
+}
