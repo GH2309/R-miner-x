@@ -15,8 +15,10 @@ contin <- function (a,b,c,d) {
   PPV <- (sensitivity*prevalence)/((sensitivity*prevalence)+((1-specificity)*(1-prevalence)))
   NPV <- ((d)/(c+d))
   DOR <- ((a/c)/(b/d))
-  names <- c("Sensitivity = ","Specificity = ","Prevalence = ", "PPV = ", "NPV = ", "Diagnostic Odds Ratio = ")
-  results <- c(sensitivity,specificity,prevalence,PPV,NPV,DOR)
+  DLRPos <-(sensitivity/(1-specificity))
+  DLRNeg <- (1-sensitivity)/specificity        
+  names <- c("Sensitivity = ","Specificity = ","Prevalence = ", "PPV = ", "NPV = ", "Diagnostic Odds Ratio = ","DLRPos = ","DLRNeg = ")
+  results <- c(sensitivity,specificity,prevalence,PPV,NPV,DOR,DLRPos,DLRNeg)
   table <- data.frame(names,results)
 return(table)
 }
